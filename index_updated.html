@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💚 HULKCOIN - SOLANA'S STRONGEST MEME COIN | OFFICIAL WEBSITE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --hulk-green: #00FF00;
+            --hulk-dark-green: #00AA00;
+            --hulk-purple: #8000FF;
+            --solana-teal: #00FFBD;
+            --hulk-red: #FF0000;
+            --dark: #111;
+            --light: #FFF;
+            --comic-yellow: #FFD700;
+        }
+        
+        body {
+            font-family: 'Bangers', cursive, sans-serif;
+            color: var(--light);
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow-x: hidden;
+            background: url('https://i.pinimg.com/736x/f9/bd/55/f9bd5540435bc9f2fc6e3809a07efb22.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+            min-height: 100vh;
+            letter-spacing: 1px;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                to bottom right,
+                rgba(0, 0, 0, 0.85),
+                rgba(0, 68, 0, 0.6)
+            );
+            z-index: -1;
+        }
+        
+        .comic-bubble {
+            position: relative;
+            background: var(--light);
+            color: var(--dark);
+            padding: 15px;
+            border-radius: 20px;
+            max-width: 80%;
+            margin: 20px auto;
+            border: 3px solid var(--dark);
+            box-shadow: 5px 5px 0 var(--dark);
+        }
+        
+        .comic-bubble:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            border-width: 15px 15px 0;
+            border-style: solid;
+            border-color: var(--light) transparent;
+            transform: translateX(-50%);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(92, 255, 92, 0.3);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            border: 2px solid var(--hulk-green);
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 20px rgba(92, 255, 92, 0.3);
+            }
+            to {
+                box-shadow: 0 0 40px rgba(92, 255, 92, 0.7);
+            }
+        }
+        
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            background: linear-gradient(to right, var(--hulk-green), var(--solana-teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(92, 255, 92, 0.7);
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+        
+        .logo-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--hulk-green);
+            box-shadow: 0 0 30px var(--hulk-green);
+            margin: 0 auto;
+            display: block;
+            transition: all 0.3s;
+        }
+        
+        .logo-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px var(--hulk-green);
+        }
+        
+        .tagline {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--hulk-green);
+            text-shadow: 3px 3px 0 var(--dark), 
+                         0 0 15px rgba(92, 255, 92, 0.7);
+        }
+        
+        /* Button Styles */
+        .action-button {
+            display: inline-block;
+            padding: 1.5rem 3rem;
+            font-size: 1.5rem;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin: 1rem 0.5rem;
+            border: none;
+            width: 80%;
+            max-width: 400px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: 3px solid var(--dark);
+            box-shadow: 5px 5px 0 var(--dark);
+        }
+        
+        .action-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+            z-index: -1;
+        }
+        
+        .action-button:hover:before {
+            left: 100%;
+        }
+        
+        .buy-button {
+            background: linear-gradient(to right, var(--hulk-green), var(--solana-teal));
+            color: var(--dark);
+            box-shadow: 0 0 30px var(--hulk-green),
+                       5px 5px 0 var(--dark);
+        }
+        
+        .stake-button {
+            background: linear-gradient(to right, var(--hulk-purple), #BA55D3);
+            color: white;
+            box-shadow: 0 0 25px rgba(128, 0, 255, 0.7),
+                       5px 5px 0 var(--dark);
+        }
+        
+        .action-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        /* Smash Button */
+        #smashButton {
+            background: var(--hulk-red);
+            color: white;
+            border: none;
+            padding: 1.5rem 3rem;
+            font-size: 2rem;
+            border-radius: 15px;
+            cursor: pointer;
+            margin: 1.5rem auto;
+            transition: all 0.3s;
+            font-family: 'Bangers', cursive;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6),
+                        5px 5px 0 var(--dark);
+            animation: shake 0.5s infinite alternate;
+            width: 80%;
+            max-width: 400px;
+            display: block;
+        }
+        
+        #smashButton:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.8),
+                        7px 7px 0 var(--dark);
+        }
+        
+        #smashButton:active {
+            transform: scale(0.95);
+        }
+        
+        #smashButton::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transform: rotate(45deg);
+            transition: all 0.5s;
+        }
+        
+        #smashButton:hover::before {
+            left: 100%;
+            top: 100%;
+        }
+        
+        @keyframes shake {
+            0% { transform: rotate(-5deg); }
+            100% { transform: rotate(5deg); }
+        }
+        
+        /* Price Ticker */
+        .price-ticker {
+            background: linear-gradient(90deg, 
+                rgba(92, 255, 92, 0.3), 
+                rgba(128, 0, 255, 0.3));
+            padding: 1.2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 2px solid var(--hulk-green);
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .price-item {
+            margin: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            border: 1px solid rgba(92, 255, 92, 0.3);
+        }
+        
+        /* Token Distribution */
+        .chart-container {
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            border: 2px solid var(--hulk-green);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            position: relative;
+            margin: 0 auto;
+        }
+        
+        .chart-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        .distribution-legend {
+            background: rgba(20, 20, 20, 0.9);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 1.8rem;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--hulk-green);
+            max-width: 320px;
+            margin: 2rem auto;
+        }
+        
+        /* Roadmap */
+        .roadmap-container {
+            margin: 4rem 0; /* Mehr Abstand nach oben */
+        }
+        
+        .roadmap-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+            padding: 1.8rem;
+            background: rgba(20, 20, 20, 0.9);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border-left: 4px solid;
+            text-align: left;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .roadmap-q {
+            position: absolute;
+            left: -50px;
+            top: 20px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border: 3px solid var(--dark);
+            box-shadow: 3px 3px 0 var(--dark);
+        }
+        
+        /* Social Links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .social-link {
+            color: white;
+            font-size: 2rem;
+            transition: all 0.3s;
+            text-shadow: 0 0 10px rgba(92, 255, 92, 0.5);
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.2);
+            color: var(--hulk-green);
+        }
+
+        /* Button Container für besseren Abstand */
+        .button-container {
+            margin: 3rem 0; /* Mehr Abstand um die Buttons */
+        }
+
+        /* Tokenomics Section mit mehr Abstand */
+        .tokenomics-section {
+            margin: 4rem 0; /* Mehr Abstand oben und unten */
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.2rem;
+                margin: 1.2rem;
+                border-radius: 15px;
+            }
+            
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            .tagline {
+                font-size: 1.5rem;
+            }
+            
+            .action-button, #smashButton {
+                padding: 1.2rem 2rem;
+                font-size: 1.3rem;
+                width: 95%;
+            }
+            
+            .logo-img {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .chart-container {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .roadmap-q {
+                left: -40px;
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://i.pinimg.com/736x/76/5e/6a/765e6ae9246547f652c085174fe1d8a2.jpg" alt="Hulkcoin Logo" class="logo-img">
+        
+        <h1>HULKCOIN</h1>
+        <p class="tagline">"SMASH THE MARKET! EARN REWARDS! 💰"</p>
+        
+        <div class="comic-bubble">
+            STRONGEST MEME COIN ON SOLANA! 100X OR GET SMASHED!
+        </div>
+        
+        <!-- Live Price Ticker -->
+        <div class="price-ticker">
+            <div class="price-item">
+                <span style="color: #aaa;">HULK/SOL:</span> 
+                <span id="hulkPrice" style="color: #5CFF5C; font-weight: bold; font-size: 1.2rem;">0.00042</span>
+            </div>
+            <div class="price-item">
+                <span style="color: #aaa;">24h Change:</span>
+                <span id="hulkChange" style="font-weight: bold; font-size: 1.2rem;">+5.2%</span>
+            </div>
+            <div class="price-item">
+                <span style="color: #aaa;">MCap:</span>
+                <span id="hulkMarketCap" style="color: #5CFF5C; font-weight: bold; font-size: 1.2rem;">$420K</span>
+            </div>
+        </div>
+        
+        
+<!-- BIO-SECTION START -->
+<div style="margin: 5rem 0; padding: 2rem; background: rgba(0, 255, 0, 0.05); border: 2px solid var(--hulk-green); border-radius: 20px; box-shadow: 0 0 25px rgba(0, 255, 0, 0.3); max-width: 800px; margin-left: auto; margin-right: auto;">
+    <h2 style="color: var(--hulk-green); font-size: 2.5rem; margin-bottom: 1.5rem; text-shadow: 0 0 10px rgba(0,255,0,0.5);">
+        🟢 WHO IS HULK?
+    </h2>
+    <p style="font-size: 1.2rem; color: var(--light); line-height: 1.6;">
+        HULK is more than just a meme – he's a movement. Inspired by the unstoppable will and raw strength of the legendary green giant,
+        HULK represents the power of community. He believes in people coming together to achieve greatness, and his mission with this crypto project
+        is to create true value and give back to those who believe.
+    </p>
+
+    <h2 style="color: var(--hulk-green); font-size: 2.5rem; margin-top: 3rem; text-shadow: 0 0 10px rgba(0,255,0,0.5);">
+        💥 WHAT IS $HULK?
+    </h2>
+    <p style="font-size: 1.2rem; color: var(--light); line-height: 1.6;">
+        $HULK is the strongest meme coin on the Solana blockchain. With a total supply of 10 million tokens,
+        it is designed to reward long-term holders and strengthen the foundation of a bold, powerful community.
+    </p>
+
+    <h2 style="color: var(--hulk-green); font-size: 2.5rem; margin-top: 3rem; text-shadow: 0 0 10px rgba(0,255,0,0.5);">🔒 STAKING & REWARDS</h2>
+    <p style="font-size: 1.2rem; color: var(--light); line-height: 1.6;">
+        One of the most exciting features of HULKCOIN is its staking model:
+        <br><br>
+        <strong>Stake $HULK and earn SOLANA</strong> – yes, you read that right. Holders who stake their HULK tokens receive rewards in SOL.
+        <br><br>
+        Strong holders are further rewarded through exclusive airdrops and benefits.
+    </p>
+
+    <p style="font-size: 1.2rem; color: var(--light); line-height: 1.6; margin-top: 2rem;">
+        Together with HULK, we are building something massive – a future where belief and strength are rewarded. This is not just a coin.
+        This is a mission. This is HULKCOIN.
+    </p>
+</div>
+<!-- BIO-SECTION END -->
+
+
+<!-- Action Buttons mit mehr Abstand -->
+        <div class="button-container">
+            <button class="action-button buy-button" id="raydiumButton">
+                <i class="fas fa-bolt"></i> BUY HERE
+            </button>
+            
+            <button id="smashButton">
+                SMASH!
+            </button>
+            
+            <button class="action-button stake-button" id="openStakingPortal">
+                <i class="fas fa-coins"></i> STAKE HULK NOW
+            </button>
+        </div>
+        
+        <!-- Social Links -->
+        <div class="social-links">
+            <a href="https://t.me/hulkcoinholders" class="social-link" target="_blank"><i class="fab fa-telegram"></i></a>
+            <a href="https://x.com/HULKCOIN" class="social-link" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://dexscreener.com/solana/ajo5jxyn6tygbkhfe6mhs5y42z4ash8ode7tejkn2xtj" class="social-link" target="_blank"><i class="fas fa-chart-line"></i></a>
+            <a href="https://birdeye.so/token/EWuox64sZtMsb6rkTDsZUSyJQnMFV7PYXmB56US4uRpn/solana" class="social-link" target="_blank"><i class="fas fa-eye"></i></a>
+        </div>
+        
+        <!-- Token Distribution (10M Supply) mit mehr Abstand -->
+        <div class="tokenomics-section">
+            <h3 style="color: #5CFF5C; text-align: center; font-size: 2rem; 
+                text-shadow: 3px 3px 0 var(--dark), 0 0 20px rgba(92, 255, 92, 0.7); margin-bottom: 2rem;">
+                TOKENOMICS
+            </h3>
+            
+            <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: center;">
+                <div class="chart-container">
+                    <canvas id="tokenChart"></canvas>
+                    <div class="chart-center">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: #5CFF5C;">10M</div>
+                        <div style="color: #aaa; font-size: 1rem;">TOTAL SUPPLY</div>
+                    </div>
+                </div>
+                
+                <div class="distribution-legend">
+                    <h4 style="margin-top: 0; color: var(--solana-teal); border-bottom: 2px solid #333; 
+                        padding-bottom: 0.8rem; font-size: 1.3rem;">
+                        DISTRIBUTION
+                    </h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin: 1rem 0; display: flex; align-items: center;">
+                            <span style="display: inline-block; width: 20px; height: 20px; background: var(--hulk-green); border-radius: 4px; margin-right: 12px;"></span>
+                            <span>Community <span style="float: right; font-weight: bold;">4M (40%)</span></span>
+                        </li>
+                        <li style="margin: 1rem 0; display: flex; align-items: center;">
+                            <span style="display: inline-block; width: 20px; height: 20px; background: var(--hulk-purple); border-radius: 4px; margin-right: 12px;"></span>
+                            <span>Staking <span style="float: right; font-weight: bold;">2.5M (25%)</span></span>
+                        </li>
+                        <li style="margin: 1rem 0; display: flex; align-items: center;">
+                            <span style="display: inline-block; width: 20px; height: 20px; background: var(--solana-teal); border-radius: 4px; margin-right: 12px;"></span>
+                            <span>Team <span style="float: right; font-weight: bold;">1.5M (15%)</span></span>
+                        </li>
+                        <li style="margin: 1rem 0; display: flex; align-items: center;">
+                            <span style="display: inline-block; width: 20px; height: 20px; background: var(--hulk-red); border-radius: 4px; margin-right: 12px;"></span>
+                            <span>Liquidity <span style="float: right; font-weight: bold;">1M (10%)</span></span>
+                        </li>
+                        <li style="margin: 1rem 0; display: flex; align-items: center;">
+                            <span style="display: inline-block; width: 20px; height: 20px; background: var(--comic-yellow); border-radius: 4px; margin-right: 12px;"></span>
+                            <span>Marketing <span style="float: right; font-weight: bold;">1M (10%)</span></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Roadmap mit mehr Abstand -->
+        <div class="roadmap-container">
+            <h2 style="color: var(--hulk-green); text-align: center; font-size: 2.5rem; margin-bottom: 2.5rem; 
+                text-shadow: 3px 3px 0 var(--dark), 0 0 20px rgba(92, 255, 92, 0.7);">
+                🚀 ROADMAP
+            </h2>
+            
+            <div style="position: relative; padding-left: 60px;">
+                <div style="position: absolute; left: 25px; top: 0; bottom: 0; width: 6px; 
+                    background: linear-gradient(to bottom, var(--hulk-green), var(--hulk-purple)); 
+                    border-radius: 3px; box-shadow: 0 0 10px rgba(92, 255, 92, 0.5);"></div>
+                
+                <div class="roadmap-item" style="border-color: var(--hulk-green);">
+                    <div class="roadmap-q" style="background: var(--hulk-green); color: var(--dark);">Q1</div>
+                    <h3 style="color: var(--hulk-green); margin-top: 0;">LAUNCH PHASE</h3>
+                    <ul style="padding-left: 25px;">
+                        <li>✅ Token Launch on Solana</li>
+                        <li>✅ Raydium Liquidity Pool</li>
+                        <li>✅ 10,000+ Holders</li>
+                        <li>🟢 Community Airdrops</li>
+                    </ul>
+                </div>
+                
+                <div class="roadmap-item" style="border-color: var(--hulk-purple);">
+                    <div class="roadmap-q" style="background: var(--hulk-purple); color: white;">Q2</div>
+                    <h3 style="color: var(--hulk-purple); margin-top: 0;">ECOSYSTEM GROWTH</h3>
+                    <ul style="padding-left: 25px;">
+                        <li>🟡 Staking Platform Launch</li>
+                        <li>🟡 CEX Listings</li>
+                        <li>🟡 HulkSwap Prototype</li>
+                        <li>🟡 50,000+ Holders</li>
+                    </ul>
+                </div>
+                
+                <div class="roadmap-item" style="border-color: var(--solana-teal);">
+                    <div class="roadmap-q" style="background: var(--solana-teal); color: var(--dark);">Q3</div>
+                    <h3 style="color: var(--solana-teal); margin-top: 0;">MASS ADOPTION</h3>
+                    <ul style="padding-left: 25px;">
+                        <li>🔴 HulkNFT Collection</li>
+                        <li>🔴 Mobile Wallet App</li>
+                        <li>🔴 Merch Store</li>
+                        <li>🔴 100,000+ Holders</li>
+                    </ul>
+                </div>
+                
+                <div class="roadmap-item" style="border-color: var(--hulk-red);">
+                    <div class="roadmap-q" style="background: var(--hulk-red); color: white;">Q4</div>
+                    <h3 style="color: var(--hulk-red); margin-top: 0;">HULK METAVERSE</h3>
+                    <ul style="padding-left: 25px;">
+                        <li>⚪ HulkVerse Game Alpha</li>
+                        <li>⚪ DAO Governance</li>
+                        <li>⚪ Cross-Chain Bridge</li>
+                        <li>⚪ 250,000+ Holders</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <footer style="margin-top: 3rem;">
+            <p style="color: var(--hulk-red); font-weight: bold; font-size: 1.1rem;">
+                ⚠️ WARNING: HULK SMASH WEAK HANDS! NOT FINANCIAL ADVICE! ⚠️
+            </p>
+            <p style="color: #aaa; margin-top: 1rem;">
+                © 2024 HULKCOIN. All rights smashed. | 
+                <a href="#" style="color: var(--hulk-green); text-decoration: none;">Terms</a> | 
+                <a href="#" style="color: var(--hulk-green); text-decoration: none;">Privacy</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Token Chart (10M Supply)
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('tokenChart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Community', 'Staking', 'Team', 'Liquidity', 'Marketing'],
+                    datasets: [{
+                        data: [4000000, 2500000, 1500000, 1000000, 1000000],
+                        backgroundColor: [
+                            'rgba(92, 255, 92, 0.8)',
+                            'rgba(128, 0, 255, 0.8)',
+                            'rgba(0, 255, 189, 0.8)',
+                            'rgba(255, 0, 0, 0.8)',
+                            'rgba(255, 215, 0, 0.8)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    cutout: '70%',
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        });
+
+        // Smash Button Funktion mit Konfetti
+        document.getElementById('smashButton').addEventListener('click', function() {
+            // Button Animation
+            this.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1.1)';
+                setTimeout(() => { this.style.transform = 'scale(1)'; }, 100);
+            }, 100);
+            
+            // Create Konfetti particles
+            for (let i = 0; i < 20; i++) {
+                createParticle(this.getBoundingClientRect().x + this.offsetWidth/2, 
+                              this.getBoundingClientRect().y + this.offsetHeight/2);
+            }
+            
+            // Show smash message
+            const messages = [
+                "HULK SMASH!",
+                "TO THE MOON!",
+                "100X INCOMING!",
+                "WEAK HANDS SMASHED!",
+                "STAKING REWARDS ACTIVATED!"
+            ];
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            
+            const bubble = document.createElement('div');
+            bubble.className = 'comic-bubble';
+            bubble.textContent = randomMessage;
+            bubble.style.animation = 'fadeIn 0.5s, floatUp 2s forwards';
+            bubble.style.position = 'absolute';
+            bubble.style.left = '50%';
+            bubble.style.transform = 'translateX(-50%)';
+            bubble.style.bottom = '120px';
+            
+            document.body.appendChild(bubble);
+            
+            setTimeout(() => {
+                bubble.remove();
+            }, 2000);
+        });
+        
+        function createParticle(x, y) {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.width = '8px';
+            particle.style.height = '8px';
+            particle.style.backgroundColor = ['var(--hulk-green)', 'var(--hulk-purple)', 'var(--solana-teal)', 'var(--hulk-red)'][Math.floor(Math.random() * 4)];
+            particle.style.borderRadius = '50%';
+            particle.style.left = `${x}px`;
+            particle.style.top = `${y}px`;
+            particle.style.pointerEvents = 'none';
+            particle.style.zIndex = '1000';
+            
+            const angle = Math.random() * Math.PI * 2;
+            const velocity = 3 + Math.random() * 5;
+            const lifetime = 1000 + Math.random() * 1000;
+            
+            document.body.appendChild(particle);
+            
+            let startTime = Date.now();
+            
+            function update() {
+                const elapsed = Date.now() - startTime;
+                const progress = elapsed / lifetime;
+                
+                if (progress >= 1) {
+                    particle.remove();
+                    return;
+                }
+                
+                const currentX = x + Math.cos(angle) * velocity * elapsed * 0.05;
+                const currentY = y + Math.sin(angle) * velocity * elapsed * 0.05 - (elapsed * 0.001 * elapsed * 0.001);
+                
+                particle.style.left = `${currentX}px`;
+                particle.style.top = `${currentY}px`;
+                particle.style.opacity = 1 - progress;
+                
+                requestAnimationFrame(update);
+            }
+            
+            requestAnimationFrame(update);
+        }
+
+        // Button Actions
+        document.getElementById('raydiumButton').addEventListener('click', () => {
+            window.open('https://dexscreener.com/solana/ajo5jxyn6tygbkhfe6mhs5y42z4ash8ode7tejkn2xtj', '_blank');
+        });
+        
+        document.getElementById('openStakingPortal').addEventListener('click', () => {
+            alert("Staking Portal wird bald verfügbar sein! Folgen Sie uns auf Twitter für Updates.");
+        });
+
+        // Add floating animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+                to { opacity: 1; transform: translateX(-50%) translateY(0); }
+            }
+            @keyframes fadeOut {
+                from { opacity: 1; transform: translateX(-50%) translateY(0); }
+                to { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            }
+            @keyframes floatUp {
+                0% { transform: translateX(-50%) translateY(0); opacity: 1; }
+                100% { transform: translateX(-50%) translateY(-100px); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
